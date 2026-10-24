@@ -1,3 +1,4 @@
+
 import pytest
 from converter.temperature import convert_temperature
 
@@ -14,8 +15,10 @@ def test_below_absolute_zero_raises():
     with pytest.raises(ValueError):
         convert_temperature(-300, "C", "K")
 
+
 def test_fahrenheit_to_celsius():
     assert convert_temperature(32, "F", "C") == pytest.approx(0)
+
 
 def test_celsius_to_kelvin():
     assert convert_temperature(0, "C", "K") == pytest.approx(273.15)
@@ -29,4 +32,12 @@ def test_unsupported_unit_raises():
     with pytest.raises(ValueError):
         convert_temperature(10, "X", "C")
 
-   
+
+def test_string_temperature_raises():
+    with pytest.raises(TypeError):
+        convert_temperature("hot", "C", "F")
+
+
+def test_boolean_temperature_raises():
+    with pytest.raises(TypeError):
+        convert_temperature(True, "C", "F")
