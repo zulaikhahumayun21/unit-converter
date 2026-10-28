@@ -13,3 +13,7 @@ def test_zero_length_edge_case():
 def test_length_invalid_unit_raises():
     with pytest.raises(ValueError):
         convert_length(5, "parsec", "m")
+def test_negative_length_raises():
+    with pytest.raises(ValueError):
+        convert_length(-5, "m", "km")
+
